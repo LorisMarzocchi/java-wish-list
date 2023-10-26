@@ -15,20 +15,18 @@ public class Main {
 
         List<Regalo> listaRegali = new ArrayList<>();
 
-
-
 //              SCANNER (READ FILE)
 
-        int numeroDiRegali = 0;
+        int numeroDiRegali = 0; //counter
+
         Scanner reader = null;
         try {
             reader = new Scanner(new File("./resources/regali.txt"));
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
-//                System.out.println(line);
+                System.out.println(line);
                 numeroDiRegali++;
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } finally {
@@ -40,8 +38,10 @@ public class Main {
         boolean exit = false;
 
         while (!exit) {
+
             System.out.println("Ci sono " + numeroDiRegali + " regali nella lista. Vuoi inserire un nuovo regalo y/n");
             exit = scanner.nextLine().equals("n");
+
             if (!exit) {
                 System.out.println("descrizione regalo: ");
                 String descrizione = scanner.nextLine();
@@ -57,14 +57,14 @@ public class Main {
 //            System.out.println("Lista Regali (ArrayList appena creata):\n" + listaRegali);
 
             for (Regalo regalo : listaRegali) {
-                System.out.println("\n" + regalo);
+                System.out.println("Hai appena inserito: \n" + regalo);
             }
 
 
 //      WRITE FILE
             FileWriter writer = null;
             try {
-                writer = new FileWriter("./resources/regali.txt",true); //ultimo parametro append true aggiunge nuovi regali alla fine del file, lasciando intatti i regali esistenti
+                 writer = new FileWriter("./resources/regali.txt",true); //ultimo parametro append true aggiunge nuovi regali alla fine del file, lasciando intatti i regali esistenti
                 for (Regalo regalo : listaRegali) {
                     writer.write(regalo.toString());
                 }
