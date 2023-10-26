@@ -15,12 +15,12 @@ public class Main {
 
         List<Regalo> listaRegali = new ArrayList<>();
 
-        //      SCANNER (READ FILE)
 
-        Scanner reader = null;
+
+//              SCANNER (READ FILE)
+
         int numeroDiRegali = 0;
-
-
+        Scanner reader = null;
         try {
             reader = new Scanner(new File("./resources/regali.txt"));
             while (reader.hasNextLine()) {
@@ -40,7 +40,7 @@ public class Main {
         boolean exit = false;
 
         while (!exit) {
-            System.out.println("Ci sono " + + numeroDiRegali + " regali nella lista. Vuoi inserire un nuovo regalo y/n");
+            System.out.println("Ci sono " + numeroDiRegali + " regali nella lista. Vuoi inserire un nuovo regalo y/n");
             exit = scanner.nextLine().equals("n");
             if (!exit) {
                 System.out.println("descrizione regalo: ");
@@ -49,6 +49,7 @@ public class Main {
                 String destinatario = scanner.nextLine();
                 listaRegali.add(new Regalo(descrizione, destinatario));
                 numeroDiRegali++;
+//                System.out.println("ci sono " + numeroDiRegali);
             }
 
         }
@@ -65,7 +66,7 @@ public class Main {
             try {
                 writer = new FileWriter("./resources/regali.txt",true); //ultimo parametro append true aggiunge nuovi regali alla fine del file, lasciando intatti i regali esistenti
                 for (Regalo regalo : listaRegali) {
-                    writer.write(regalo.toString() + " ");
+                    writer.write(regalo.toString());
                 }
             } catch (IOException e) {
                 e.printStackTrace(); //Questo mostra lo stack trace completo dell'errore
